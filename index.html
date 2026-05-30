@@ -1,63 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Home Screen</title>
+  <title>Start Page</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background: linear-gradient(180deg, #1c1c1e, #3a3a3c);
+      color: white;
       text-align: center;
     }
 
-    h1 {
+    .time {
       margin-top: 20px;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 28px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 15px;
       padding: 20px;
-      max-width: 400px;
+      max-width: 420px;
       margin: auto;
     }
 
     .app {
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 12px;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      font-size: 14px;
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+      transition: 0.15s;
     }
 
     .app:active {
-      transform: scale(0.95);
+      transform: scale(0.92);
+    }
+
+    .icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dock {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.15);
+      padding: 10px;
+      border-radius: 25px;
+      display: flex;
+      gap: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .dock div {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* Search bar (Chrome style) */
+    .search {
+      margin: 15px auto;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-<h1>📱 My Home Screen</h1>
+<div class="time" id="time"></div>
+<h1>🌐 My Start Page</h1>
+
+<!-- Chrome-like search bar -->
+<div class="search">
+  <input id="searchBox" placeholder="Search or type URL..." onkeydown="handle(event)">
+</div>
 
 <div class="grid">
 
-  <div class="app" onclick="window.open('https://google.com')">🔎 Google</div>
+  <div class="app" onclick="openApp('https://google.com')">
+    <span class="icon">🔎</span>Google
+  </div>
 
-  <div class="app" onclick="window.open('https://youtube.com')">▶️ YouTube</div>
+  <div class="app" onclick="openApp('https://youtube.com')">
+    <span class="icon">▶️</span>YouTube
+  </div>
 
-  <div class="app" onclick="window.open('https://chatgpt.com')">🤖 ChatGPT</div>
+  <div class="app" onclick="openApp('https://chatgpt.com')">
+    <span class="icon">🤖</span>AI
+  </div>
 
-  <div class="app" onclick="window.open('https://github.com')">💻 GitHub</div>
-
-  <div class="app" onclick="window.open('https://gmail.com')">✉️ Gmail</div>
-
-  <div class="app" onclick="window.open('https://maps.google.com')">🗺 Maps</div>
+  <div class="app" onclick="openApp('https://github.com')">
+    <span class="icon">💻</span>GitHub
+  </div>
 
 </div>
+
+<!-- iPhone-style dock -->
+<div class="dock">
+  <div onclick="openApp('https://google.com')">🔎</div>
+  <div onclick="openApp('https://youtube.com')">▶️</div>
+  <div onclick="openApp('https://gmail.com')">✉️</div>
+  <div onclick="openApp('https://maps.google.com')">🗺️</div>
+</div>
+
+<script>
+function openApp(url) {
+  window.open(url, "_blank");
+}
+
+// smart search bar
+function handle(e) {
+  if (e.key === "Enter") {
+    let v = document.getElementById("searchBox").value;
+
+    if (v.includes(".")) {
+      if (!v.startsWith("http")) v = "https://" + v;
+      window.location.href = v;
+    } else {
+      window.location.href =
+        "https://www.google.com/search?q=" + encodeURIComponent(v);
+    }
+  }
+}
+
+// live clock (like phone)
+function updateTime() {
+  const now = new Date();
+  document.getElementById("time").innerText =
+    now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
 
 </body>
 </html>
