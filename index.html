@@ -1,16 +1,63 @@
+<!DOCTYPE html>
 <html>
-<form action="https://www.google.com/search" method="GET">
-<input type="text" name="q" placeholder="Search Google">
-<button type="submit">Search</button>
-</form>
-<form action="https://www.youtube.com/results" method="GET">
-<input type="text" name="search_query" placeholder="Search YouTube">
-<button type="submit">YouTube video search</button>
-</form>
-<button onclick="history.back();">
-Exit Site    
-</button>
-  <a href="https://github.com/zhartman218-lab/webshortcut/issues/new" target="_blank">
-Bugs or Errors? Click here to report!    
-</a>
+<head>
+  <title>My Home Screen</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .app {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+
+    .app:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>📱 My Home Screen</h1>
+
+<div class="grid">
+
+  <div class="app" onclick="window.open('https://google.com')">🔎 Google</div>
+
+  <div class="app" onclick="window.open('https://youtube.com')">▶️ YouTube</div>
+
+  <div class="app" onclick="window.open('https://chatgpt.com')">🤖 ChatGPT</div>
+
+  <div class="app" onclick="window.open('https://github.com')">💻 GitHub</div>
+
+  <div class="app" onclick="window.open('https://gmail.com')">✉️ Gmail</div>
+
+  <div class="app" onclick="window.open('https://maps.google.com')">🗺 Maps</div>
+
+</div>
+
+</body>
 </html>
