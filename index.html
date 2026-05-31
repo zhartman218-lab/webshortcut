@@ -1,152 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Start Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Start Page</title>
+
 <style>
-.grid {
-  padding-bottom: 140px;
+body {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 120px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #1c1c1e, #3a3a3c);
+    color: white;
+    text-align: center;
 }
-margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #1c1c1e, #3a3a3c);
-      color: white;
-      text-align: center;
-    }
+
 .time {
-      margin-top: 20px;
-      font-size: 20px;
-      opacity: 0.8;
-    }
+    margin-top: 20px;
+    font-size: 24px;
+    opacity: 0.9;
+}
+
 h1 {
-      margin: 10px 0;
-      font-size: 28px;
-    }
-body {
-  margin: 0;
-  padding-bottom: 120px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #1c1c1e, #3a3a3c);
-  color: white;
-  text-align: center;
+    margin-top: 10px;
+    font-size: 28px;
 }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      padding: 20px;
-      max-width: 420px;
-      margin: auto;
-    }
+
+.search {
+    width: 85%;
+    max-width: 450px;
+    margin: 20px auto;
+}
+
+.search input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
 .app {
-      background: rgba(255,255,255,0.1);
-      border-radius: 18px;
-      padding: 12px;
-      cursor: pointer;
-      font-size: 12px;
-      backdrop-filter: blur(10px);
-      transition: 0.15s;
-    }
- .app:active {
-      transform: scale(0.92);
-    }
+    background: rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.app:hover {
+    transform: scale(1.05);
+}
+
 .icon {
-      font-size: 26px;
-      display: block;
-      margin-bottom: 5px;
-    }
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+}
+
 .dock {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.15);
-      padding: 10px;
-      border-radius: 25px;
-      display: flex;
-      gap: 15px;
-      backdrop-filter: blur(10px);
-    }
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    padding: 12px 20px;
+    display: flex;
+    gap: 25px;
+    backdrop-filter: blur(10px);
+}
+
 .dock div {
-      font-size: 22px;
-      cursor: pointer;
-    }
-/* Search bar (Chrome style) */
-    .search {
-      margin: 15px auto;
-      width: 80%;
-      max-width: 400px;
-    }
-input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 25px;
-      border: none;
-      outline: none;
-      font-size: 14px;
-    }
-  </style>
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.footer a {
+    color: white;
+}
+</style>
 </head>
+
 <body>
-<div class="time" id="time"></div>
-<h1>🌐 My Start Page</h1>
-<!-- Chrome-like search bar -->
+
+<div class="time" id="clock"></div>
+
+<h1>📱 My Start Page</h1>
+
 <div class="search">
-  <input id="searchBox" placeholder="Search or type URL..." onkeydown="handle(event)">
+    <input
+        id="searchBox"
+        placeholder="Search Google or enter a website..."
+        onkeydown="search(event)">
 </div>
+
 <div class="grid">
-<div class="app" onclick="openApp('https://google.com')">
-    <span class="icon">🔎</span>Google
-  </div>
-<div class="app" onclick="openApp('https://youtube.com')">
-    <span class="icon">▶️</span>YouTube
-  </div>
-<div class="app" onclick="openApp('https://chatgpt.com')">
-    <span class="icon">🤖</span>AI
-  </div>
-<div class="app" onclick="openApp('https://github.com')">
-    <span class="icon">💻</span>GitHub
-  </div>
+
+    <div class="app" onclick="openSite('https://google.com')">
+        <span class="icon">🔎</span>
+        Google
+    </div>
+
+    <div class="app" onclick="openSite('https://youtube.com')">
+        <span class="icon">▶️</span>
+        YouTube
+    </div>
+
+    <div class="app" onclick="openSite('https://chatgpt.com')">
+        <span class="icon">🤖</span>
+        ChatGPT
+    </div>
+
+    <div class="app" onclick="openSite('https://github.com')">
+        <span class="icon">💻</span>
+        GitHub
+    </div>
+
+    <div class="app" onclick="openSite('https://gmail.com')">
+        <span class="icon">✉️</span>
+        Gmail
+    </div>
+
+    <div class="app" onclick="openSite('https://maps.google.com')">
+        <span class="icon">🗺️</span>
+        Maps
+    </div>
+
+    <div class="app" onclick="openSite('https://drive.google.com')">
+        <span class="icon">📁</span>
+        Drive
+    </div>
+
+    <div class="app" onclick="openSite('https://calendar.google.com')">
+        <span class="icon">📅</span>
+        Calendar
+    </div>
+
 </div>
-<!-- iPhone-style dock -->
+
+<div class="footer">
+    <a href="https://github.com/zhartman218-lab/issues/new" target="_blank">
+        Report a Bug
+    </a>
+</div>
+
 <div class="dock">
-  <div onclick="openApp('https://google.com')">🔎</div>
-  <div onclick="openApp('https://youtube.com')">▶️</div>
-  <div onclick="openApp('https://gmail.com')">✉️</div>
-  <div onclick="openApp('https://maps.google.com')">🗺️</div>
+    <div onclick="openSite('https://google.com')">🔎</div>
+    <div onclick="openSite('https://youtube.com')">▶️</div>
+    <div onclick="openSite('https://gmail.com')">✉️</div>
+    <div onclick="openSite('https://maps.google.com')">🗺️</div>
 </div>
+
 <script>
-function openApp(url) {
-  window.open(url, "_blank");
+function openSite(url) {
+    window.open(url, "_blank");
 }
-// smart search bar
-function handle(e) {
-  if (e.key === "Enter") {
-    let v = document.getElementById("searchBox").value;
- if (v.includes(".")) {
-      if (!v.startsWith("http")) v = "https://" + v;
-      window.location.href = v;
-    } else {
-      window.location.href =
-        "https://www.google.com/search?q=" + encodeURIComponent(v);
+
+function search(event) {
+    if (event.key === "Enter") {
+        let text = document.getElementById("searchBox").value.trim();
+
+        if (text.includes(".")) {
+            if (!text.startsWith("http://") &&
+                !text.startsWith("https://")) {
+                text = "https://" + text;
+            }
+            window.location.href = text;
+        } else {
+            window.location.href =
+                "https://www.google.com/search?q=" +
+                encodeURIComponent(text);
+        }
     }
-  }
 }
-// live clock (like phone)
-function updateTime() {
-  const now = new Date();
-  document.getElementById("time").innerText =
-    now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
 }
-setInterval(updateTime, 1000);
-updateTime();
+
+setInterval(updateClock, 1000);
+updateClock();
 </script>
-body {
-  margin: 0;
-  padding-bottom: 120px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #1c1c1e, #3a3a3c);
-  color: white;
-  text-align: center;
-}
+
 </body>
 </html>
